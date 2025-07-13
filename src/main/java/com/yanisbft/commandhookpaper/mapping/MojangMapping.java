@@ -12,6 +12,7 @@ import net.minecraft.commands.arguments.selector.EntitySelectorParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BaseCommandBlock;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.CommandBlockEntity;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -19,6 +20,7 @@ import org.bukkit.entity.Entity;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MojangMapping implements Mapping {
@@ -31,8 +33,10 @@ public class MojangMapping implements Mapping {
     EntitySelectorParser parser = getArgumentParser(selector);
 
     try {
-      List<? extends net.minecraft.world.entity.Entity> nmsEntities = getNmsEntities(parser, wrapper);
-      entities = convertToBukkitEntity(nmsEntities);
+      if (wrapper != null) {
+        List<? extends net.minecraft.world.entity.Entity> nmsEntities = getNmsEntities(parser, wrapper);
+        entities = convertToBukkitEntity(nmsEntities);
+      }
     } catch (CommandSyntaxException ignored) {
     }
 
@@ -44,9 +48,13 @@ public class MojangMapping implements Mapping {
     Level world = ((CraftWorld) block.getWorld()).getHandle();
     BlockPos blockPosition = new BlockPos(block.getX(), block.getY(), block.getZ());
 
-    CommandBlockEntity blockEntity = (CommandBlockEntity) world.getBlockEntity(blockPosition, true);
-    BaseCommandBlock commandBlockListenerAbstract = blockEntity.getCommandBlock();
-    return commandBlockListenerAbstract.createCommandSourceStack();
+    Optional<CommandBlockEntity> optionalBlockEntity = world.getBlockEntity(blockPosition, BlockEntityType.COMMAND_BLOCK);
+    if (optionalBlockEntity.isPresent()) {
+      BaseCommandBlock commandBlockListenerAbstract = optionalBlockEntity.get().getCommandBlock();
+      return commandBlockListenerAbstract.createCommandSourceStack();
+    }
+
+    return null;
   }
 
   @Override

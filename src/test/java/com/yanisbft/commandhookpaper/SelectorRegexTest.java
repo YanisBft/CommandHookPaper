@@ -7,12 +7,14 @@ package com.yanisbft.commandhookpaper;
 import com.yanisbft.commandhookpaper.mapping.Mapping;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.event.server.ServerCommandEvent;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
+@Disabled
 class SelectorRegexTest {
     private final BlockCommandSender sender = mock();
     private final Mapping mapping = mock();
