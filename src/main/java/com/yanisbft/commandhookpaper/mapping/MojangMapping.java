@@ -51,7 +51,7 @@ public class MojangMapping implements Mapping {
     Optional<CommandBlockEntity> optionalBlockEntity = world.getBlockEntity(blockPosition, BlockEntityType.COMMAND_BLOCK);
     if (optionalBlockEntity.isPresent()) {
       BaseCommandBlock commandBlockListenerAbstract = optionalBlockEntity.get().getCommandBlock();
-      return commandBlockListenerAbstract.createCommandSourceStack();
+      return commandBlockListenerAbstract.createCommandSourceStack(commandBlockListenerAbstract.createSource());
     }
 
     return null;
