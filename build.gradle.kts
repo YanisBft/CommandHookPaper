@@ -17,8 +17,8 @@ java {
 dependencies {
   paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.3")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:6.0.3")
   testImplementation("org.mockito:mockito-core:5.20.0")
 }
 
