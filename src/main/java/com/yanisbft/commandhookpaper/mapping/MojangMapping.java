@@ -12,7 +12,7 @@ import net.minecraft.commands.arguments.selector.EntitySelectorParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BaseCommandBlock;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.entity.CommandBlockEntity;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -48,7 +48,7 @@ public class MojangMapping implements Mapping {
     Level world = ((CraftWorld) block.getWorld()).getHandle();
     BlockPos blockPosition = new BlockPos(block.getX(), block.getY(), block.getZ());
 
-    Optional<CommandBlockEntity> optionalBlockEntity = world.getBlockEntity(blockPosition, BlockEntityType.COMMAND_BLOCK);
+    Optional<CommandBlockEntity> optionalBlockEntity = world.getBlockEntity(blockPosition, BlockEntityTypes.COMMAND_BLOCK);
     if (optionalBlockEntity.isPresent()) {
       BaseCommandBlock commandBlockListenerAbstract = optionalBlockEntity.get().getCommandBlock();
       BaseCommandBlock.CloseableCommandBlockSource source = commandBlockListenerAbstract.createSource(world.getMinecraftWorld());

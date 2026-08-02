@@ -14,7 +14,7 @@ java {
 }
 
 dependencies {
-  paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
+  paperweight.paperDevBundle("26.2.build.+")
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.2")
   testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
