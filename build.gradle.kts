@@ -17,7 +17,7 @@ dependencies {
   paperweight.paperDevBundle("26.2.build.+")
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.1.3")
-  testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+  testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
   testImplementation("org.mockito:mockito-core:5.23.0")
 }
 
